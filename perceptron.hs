@@ -9,12 +9,11 @@ sigderiv sx = sx * (1 - sx)
 
 ann :: F -> F -> F -> Int -> F
 ann  trn_in weights trn_out iter =
-  let outf w_in   =  mmap sigmoid (trn_in `mmult` w_in)
-      errf out = matsub trn_out out
-      adjf out err =  err `hmul` (mmap sigderiv out)
-      weightf w adj = madd w ((transpose trn_in) `mmult` adj)
-      out_wout w0 = let out = outf w0; err = errf out; adj=adjf out err; w = weightf w0 adj in (out, w)
-      
+  let out_wout win = let out = mmap sigmoid (trn_in `mmult` win)
+                         err = matsub trn_out out
+                         adj = err `hmul` (mmap sigderiv out)
+                         wout= madd win ((transpose trn_in) `mmult` adj)
+                      in (out, wout)
       ann' :: F -> F -> Int -> F
       ann' o w i = if i <= 0 then o else let (o',w') = out_wout w in ann' o' w'  (i - 1)
       (out,weights') = out_wout weights
