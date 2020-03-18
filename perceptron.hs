@@ -9,16 +9,17 @@ training_outputs=transpose [[0, 1, 1, 0]]::[[Float]]
 sigmoid x =  1 / (1 + exp (-x))
 sigderiv sx = sx * (1 - sx)
 
+out_wout inp win = let out = mmap sigmoid (inp `mmult` win)
+                       err = matsub training_outputs out
+                       adj = err `hmul` (mmap sigderiv out)
+                       wout= madd win ((transpose inp) `mmult` adj)
+                    in (out, wout)
+
 ann :: F -> F -> F -> Int -> (F,F)
 ann  trn_in weights trn_out iter =
-  let out_wout win = let out = mmap sigmoid (trn_in `mmult` win)
-                         err = matsub trn_out out
-                         adj = err `hmul` (mmap sigderiv out)
-                         wout= madd win ((transpose trn_in) `mmult` adj)
-                      in (out, wout)
-      ann' :: F -> F -> Int -> (F,F)
-      ann' o w i = if i <= 0 then (o,w) else let (o',w') = out_wout w in ann' o' w'  (i - 1)
-      (out,weights') = out_wout weights
+  let ann' :: F -> F -> Int -> (F,F)
+      ann' o w i = if i <= 0 then (o,w) else let (o',w') = out_wout training_inputs w in ann' o' w'  (i - 1)
+      (out,weights') = out_wout training_inputs weights
    in ann' out weights' (iter -1)
                    
 main = 
@@ -34,3 +35,6 @@ main =
      let (out,ws_out) = ann training_inputs synaptic_weights training_outputs 20000
      putStrLn $ "\nWeights after training: " ++ show ws_out
      putStrLn $ "\nOutput  after training: " ++ show out
+
+     let (newCase,(newOutput,_)) = ([[1,0,0]], out_wout newCase ws_out)
+     putStrLn $ "\nNew Input and Output with trained weights:" ++ show  newCase ++ "=>" ++ show newOutput 
