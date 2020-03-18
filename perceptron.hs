@@ -12,8 +12,8 @@ ann  trn_in weights trn_out iter =
   let outf w_in   =  mmap sigmoid (trn_in `mmult` w_in)
       errf out = matsub trn_out out
       adjf out err =  err `hmul` (mmap sigderiv out)
-      weightf w o adj = madd w ((transpose trn_in) `mmult` adj)
-      out_wout w0 = let out = outf w0; err = errf out; adj=adjf out err; w = weightf w0 out adj in (out, w)
+      weightf w adj = madd w ((transpose trn_in) `mmult` adj)
+      out_wout w0 = let out = outf w0; err = errf out; adj=adjf out err; w = weightf w0 adj in (out, w)
       
       ann' :: F -> F -> Int -> F
       ann' o w i = if i <= 0 then o else let (o',w') = out_wout w in ann' o' w'  (i - 1)
