@@ -1,21 +1,23 @@
 import Matrix
 import System.Random
 
+{- | The output follows the high-bit of the input.  We want the perceptron
+ --  percieve this. -}
 training_inputs=[[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]] -- ::[[Float]]
 training_outputs=transpose [[0, 1, 1, 0]]::[[Float]]
 
 sigmoid x =  1 / (1 + exp (-x))
 sigderiv sx = sx * (1 - sx)
 
-ann :: F -> F -> F -> Int -> F
+ann :: F -> F -> F -> Int -> (F,F)
 ann  trn_in weights trn_out iter =
   let out_wout win = let out = mmap sigmoid (trn_in `mmult` win)
                          err = matsub trn_out out
                          adj = err `hmul` (mmap sigderiv out)
                          wout= madd win ((transpose trn_in) `mmult` adj)
                       in (out, wout)
-      ann' :: F -> F -> Int -> F
-      ann' o w i = if i <= 0 then o else let (o',w') = out_wout w in ann' o' w'  (i - 1)
+      ann' :: F -> F -> Int -> (F,F)
+      ann' o w i = if i <= 0 then (o,w) else let (o',w') = out_wout w in ann' o' w'  (i - 1)
       (out,weights') = out_wout weights
    in ann' out weights' (iter -1)
                    
@@ -29,5 +31,6 @@ main =
      putStrLn "Random starting synaptic weights:"
      putStrLn $ show synaptic_weights
      
-     let result = "\nOutput after training:\n" ++ show ( ann training_inputs synaptic_weights training_outputs 20000)
-     putStrLn  result
+     let (out,ws_out) = ann training_inputs synaptic_weights training_outputs 20000
+     putStrLn $ "\nWeights after training: " ++ show ws_out
+     putStrLn $ "\nOutput  after training: " ++ show out
