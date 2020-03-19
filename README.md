@@ -21,7 +21,7 @@ I want to learn about using these web-based science "notebooks."
 Wed 18 Mar 2020 11:32:34 PM PDT
 I coded the perceptron (percy.m) in Octave.  Octave was such a joy (no pun). Everything was built-in and the syntax was natural. No need to add print statements, just leave off the simicolons and expressins automatically print. Alas, Octave was only half as fast as homegrown Haskell (or numPy) implimentations of Percy the perceptron. 
 
-Julia was a disapointint, not as simple as Octave when it came to using matrix operations.  Matrix M => Exp^M required writing the function (because square matrices). 1 - M also was a problem. Julia in general made me research and use alternate methods for matrix operations.  It's strict--maybe that' a good thing.  Performace was slow about 5-1/2 times as long to run as Haskell (or numPy), yet (still way faster than Racket.) 
+Julia was a disapointment, not as simple as Octave when it came to using matrix operations.  Matrix M => Exp^M required writing the function (because square matrices). 1 - M also was a problem. Julia in general made me research and use alternate methods for matrix operations.  It's strict--maybe that's a good thing.  Performace was slow about 5-1/2 times as long to run as Haskell (or numPy), yet still way faster than Racket. 
 
 # References #
 
