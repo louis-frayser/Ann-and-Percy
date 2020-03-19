@@ -14,6 +14,7 @@ test:
 	${TIME} python ann.py; echo
 	ghc --make perceptron; ${TIME} ./perceptron; echo
 	${TIME} racket ann.rkt; echo
+	${TIME} octave percy.m; echo
 
 clean:
 	@[ -d Attic ] || mkdir -v Attic
