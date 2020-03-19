@@ -4,10 +4,10 @@
 I watched the video (by Jonas Bostoen), decided to follow along but in Racket. I'm gonna keep playing
 with this until I understand what it's doing. 
 
-Racket was challenging but nothing like when I recoded this in Haskell.  The biggest benefit
+Racket was challenging but much easier that recoded this perceptron in Haskell.  The biggest benefit
 of Racket was probably the IDE and the ability to use very symbolic function 
 names (matix+ for exp). Racket turned out to be pretty slow, however the docs
-said that typed version would be 25 to 50 times faster,
+said that typed version would be 25 to 50 times faster.
 
 Haskell took longer to write and was quite difficult to debug  In the end, its
 performance was equal to Python's, and that was a  simple list implementation of matrices
@@ -17,6 +17,10 @@ real Matrix package.
 After a little exposure numPy and R, I'm beginning to understand the usage of special packages
 for this type of research.  Well, next it's one to Common Lisp, R and  maybe Julia.
 I want to learn about using these web-based science "notebooks." 
+
+Wed 18 Mar 2020 11:32:34 PM PDT
+I coded the perceptron (percy) in Octave.  Octave was such a joy (no pun). Everything was built-in and the syntax was natural. No need to add print statements, just leave off the simicolons and expressins automatically print.
+
 
 # References #
 

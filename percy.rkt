@@ -33,22 +33,21 @@ https://github.com/jonasbostoen/simple-neural-network
 
 (define Output #f)
 (define Input-layer #f)
-(time 
- (do ( (it 0 (+ 1 it)) )
-   ((>=  it 20000) ) 
-   (set! Input-layer %training-inputs)
-   (set! Output (matrix-map sigmoid (matrix* Input-layer %synaptic-weights)))
-   (let* ((error (matrix- %training-outputs Output))
-          (deriv (matrix-map sigmo-deriv Output))
-          (adj (hadamard* error deriv)))
-     (set! %synaptic-weights
-           (matrix+ %synaptic-weights
-                    (matrix* (matrix-transpose Input-layer)
-                             adj)))))
 
- (displayln "\nSynaptic weights after training:")
- (displayln %synaptic-weights)
+(do ( (it 0 (+ 1 it)) )
+  ((>=  it 20000) ) 
+  (set! Input-layer %training-inputs)
+  (set! Output (matrix-map sigmoid (matrix* Input-layer %synaptic-weights)))
+  (let* ((error (matrix- %training-outputs Output))
+         (deriv (matrix-map sigmo-deriv Output))
+         (adj (hadamard* error deriv)))
+    (set! %synaptic-weights
+          (matrix+ %synaptic-weights
+                   (matrix* (matrix-transpose Input-layer)
+                            adj)))))
 
- (displayln "\nOutputs after training:")
- (displayln Output)
- )
+(displayln "\nSynaptic weights after training:")
+(displayln %synaptic-weights)
+
+(displayln "\nOutputs after training:")
+(displayln Output)
