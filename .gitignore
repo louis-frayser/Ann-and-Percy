@@ -4,3 +4,4 @@ perceptron
 Attic/
 .#*
 *.o
+[#]*
