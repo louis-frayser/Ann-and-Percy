@@ -11,9 +11,9 @@ all: ${TARGETS}
 perceptron: Matrix.hs
 
 test:
-	${TIME} python ann.py; echo
+	${TIME} python percy.py; echo
 	ghc --make perceptron; ${TIME} ./perceptron; echo
-	${TIME} racket ann.rkt; echo
+	${TIME} racket percy.rkt; echo
 	${TIME} octave percy.m; echo
 
 clean:
