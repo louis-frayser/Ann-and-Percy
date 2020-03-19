@@ -1,0 +1,117 @@
+time -p python percy.py; echo
+Random starting synaptic weights:
+[[-0.16595599]
+ [ 0.44064899]
+ [-0.99977125]]
+Synaptic weights after training:
+[[10.38040701]
+ [-0.20641179]
+ [-4.98452047]]
+Outputs after training
+[[0.00679672]
+ [0.99445583]
+ [0.99548516]
+ [0.00553614]]
+
+ghc --make perceptron; time -p ./perceptron; echo
+Inputs:
+[[0.0,0.0,1.0],[1.0,1.0,1.0],[1.0,0.0,1.0],[0.0,1.0,1.0]]
+
+Random starting synaptic weights:
+[[-0.96218383],[0.4067105],[0.73763275]]
+
+Weights after training: [[10.380024],[-0.2067138],[-4.9841557]]
+
+Output  after training: [[6.7991866e-3],[0.9944541],[0.99548507],[5.536485e-3]]
+
+New Input and Output with trained weights:[[1.0,0.0,0.0]]=>[[0.999969]]
+
+time -p racket percy.rkt; echo
+Random starting synaptic weights:
+(array #[#[0.013461780920636546] #[0.6952133212714389] #[-0.7907773718428084]])
+
+Synaptic weights after training:
+(array #[#[10.380432015675213] #[-0.20637696230615157] #[-4.984553753983959]])
+
+Outputs after training:
+(array #[#[0.00679649695998072] #[0.994455979395658] #[0.99548512600473] #[0.005536145217884025]])
+
+time -p octave percy.m; echo
+octave = ============== percy.m ======================================
+training_inputs =
+
+   0   0   1
+   1   1   1
+   1   0   1
+   0   1   1
+
+training_outputs =
+
+   0
+   1
+   1
+   0
+
+sigmoid =
+
+@(x) 1 ./ (1 + exp (-x))
+
+sigderiv =
+
+@(sx) sx .* (1 - sx)
+
+synaptic_weights =
+
+   0.14601
+   0.12056
+  -0.50940
+
+--
+After training...
+synaptic_weights =
+
+   10.38041
+   -0.20658
+   -4.98442
+
+output =
+
+   0.0067974
+   0.9944555
+   0.9954856
+   0.0055357
+
+
+time -p julia percy.jl; echo
+Training inputs
+4×3 Array{Int64,2}:
+ 0  0  1
+ 1  1  1
+ 1  0  1
+ 0  1  1
+Training Outputs
+4-element Array{Int64,1}:
+ 0
+ 1
+ 1
+ 0
+Initial random weights
+3-element Array{Float64,1}:
+ -0.9923354814999272 
+  0.6379925273556406 
+  0.09988133418498268--
+
+Weights after training: 
+3-element Array{Float64,1}:
+ 14.815630041468932 
+ -0.3757584374648572
+ -9.506288856886233 
+
+Outputs after trainging
+4-element Array{Float64,1}:
+ 7.43807702760126e-5  
+ 0.9928506408136549   
+ 0.9950790274856959   
+ 5.1083537006660025e-5
+
+
