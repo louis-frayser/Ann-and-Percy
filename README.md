@@ -1,5 +1,5 @@
 
-%	Create a Simple Neural Network in Python from Scratch
+#	Create a Simple Neural Network in Python from Scratch
 
 I watched the video (by Jonas Bostoen), decided to follow along but in Racket. I'm gonna keep playing
 with this until I understand what it's doing. 
@@ -19,16 +19,15 @@ for this type of research.  Well, next it's one to Common Lisp, R and  maybe Jul
 I want to learn about using these web-based science "notebooks." 
 
 Wed 18 Mar 2020 11:32:34 PM PDT
-I coded the perceptron (percy) in Octave.  Octave was such a joy (no pun). Everything was built-in and the syntax was natural. No need to add print statements, just leave off the simicolons and expressins automatically print.
-
+I coded the perceptron (percy) in Octave.  Octave was such a joy (no pun). Everything was built-in and the syntax was natural. No need to add print statements, just leave off the simicolons and expressins automatically print. Alas, Octave was only half as fast and homegrown Haskell (or numPy) implimentations of Percy the perceptron. 
 
 # References #
 
-1. YouTube video:              https://www.youtube.com/watch?v=kft1AJ9WVDk&t=634s
-2. GitHub original:            https://github.com/jonasbostoen/simple-neural-network
-3. Numeric.LinearAlgebra.Data: https://hackage.haskell.org/package/hmatrix
-4. Rosetta Code                https://rosettacode.org/wiki/Matrix_multiplication
-5. Data.Matrix(matrix):        https://hackage.haskell.org/package/matrix
-6. Matrix Multiplication:      https://www.mathsisfun.com/algebra/matrix-multiplying.html
-7. Hadamard product:           https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
-8. Technical discussion:       https://iamtrask.github.io/2015/07/12/basic-python-network/
+1. Intro: YouTube video:        https://www.youtube.com/watch?v=kft1AJ9WVDk&t=634s
+2. GitHub accompaniment:        https://github.com/jonasbostoen/simple-neural-network
+8. Original technical analysis: https://iamtrask.github.io/2015/07/12/basic-python-network/
+3. Numeric.LinearAlgebra.Data:  https://hackage.haskell.org/package/hmatrix
+4. Rosetta Code                 https://rosettacode.org/wiki/Matrix_multiplication
+5. Data.Matrix(matrix):         https://hackage.haskell.org/package/matrix
+6. Matrix Multiplication:       https://www.mathsisfun.com/algebra/matrix-multiplying.html
+7. Hadamard product:            https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
