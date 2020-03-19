@@ -15,6 +15,7 @@ test:
 	ghc --make perceptron; ${TIME} ./perceptron; echo
 	${TIME} racket percy.rkt; echo
 	${TIME} octave percy.m; echo
+	${TIME} julia percy.jl; echo
 
 clean:
 	@[ -d Attic ] || mkdir -v Attic
