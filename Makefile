@@ -19,7 +19,7 @@ test:
 
 clean:
 	@[ -d Attic ] || mkdir -v Attic
-	@for x in  *~ *.hi *.o; \
+	@for x in \#* *~ *.hi *.o; \
 	    do test "$${x:0:1}" = '*' || mv -v "$$x" Attic/; done
 	@echo ok.
 
