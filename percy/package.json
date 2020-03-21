@@ -1,0 +1,23 @@
+{
+  "name": "percy",
+  "version": "1.0.0",
+  "description": "An experiment with matrix math in JavaScript",
+  "main": "percy.js",
+  "dependencies": {
+    "mathjs": "^6.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node percy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "file:///."
+  },
+  "keywords": [
+    "ANN",
+    "Neural"
+  ],
+  "author": "Louis Frayser",
+  "license": "UNLICENSED"
+}

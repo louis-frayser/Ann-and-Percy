@@ -23,6 +23,20 @@ I coded the perceptron (percy.m) in Octave.  Octave was such a joy (no pun). Eve
 
 Julia was a disapointment, not as simple as Octave when it came to using matrix operations.  Matrix M => Exp^M required writing the function (because square matrices). 1 - M also was a problem. Julia in general made me research and use alternate methods for matrix operations.  It's strict--maybe that's a good thing.  Performace was slow about 5-1/2 times as long to run as Haskell (or numPy), yet still way faster than Racket. 
 
+Fri 20 Mar 2020 01:01:08 PM PDT
+Javascript was interestingly fast(percy.js). It took 3x the speed of Python, Haskell, but was nearly twice as fast a Julia. 
+
+
+| Tool    |      | Secs  | Languge     |
+|---------|------|-------|-------------|
+| GHc     | real | 0.38  | Haskell     |
+| numPy   | real | 0.35  | Python      |
+| Racket  | real | 14.62 | Scheme      |
+| Octave  | real | 0.69  | MatLab      |
+| Julia   | real | 2.16  | Julia       |
+| Node    | real | 1.22  | Javascript  |
+
+
 # References #
 
 1. Intro: YouTube video:        https://www.youtube.com/watch?v=kft1AJ9WVDk&t=634s

@@ -7,7 +7,7 @@ include percy/percy.mak
 .SUFFIXES: .hs
 
 % : %.hs
-	ghc --make $@
+	ghc -O3 -ipercy --make $@
 
 all:: ${TARGETS}
 

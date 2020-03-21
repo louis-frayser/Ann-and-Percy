@@ -5,3 +5,4 @@ Attic/
 .#*
 *.o
 [#]*
+node_modules/
