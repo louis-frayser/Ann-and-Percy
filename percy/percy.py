@@ -14,12 +14,13 @@ training_inputs = np.array([[0,0,1],
 
 training_outputs = np.array([[0,1,1,0]]).T
 
-np.random.seed(1)
+"""np.random.seed(1) # Not used"""
 
 synaptic_weights = 2 *  np.random.random((3,1)) - 1
 
-print("Random starting synaptic weights:")
-print(synaptic_weights)
+print("Training inputs:",  training_inputs)
+print("Training outputs:", training_outputs)
+print("Random starting synaptic weights:", synaptic_weights)
 
 input_layer = training_inputs
 
@@ -36,10 +37,10 @@ for iteration in range(20000):
     synaptic_weights += np.dot(input_layer.T,  adjustments)
     
 
-print("Synaptic weights after training:")
-print(synaptic_weights)
+print("Synaptic weights after training:", synaptic_weights)
 
-print("Outputs after training")
-print(output)
+print("Outputs after training", output)
 
+novelout = sigmoid(np.dot([1,0,0],synaptic_weights))
 
+print("Output for novel input: [ 1,0,0 ] => ", novelout)

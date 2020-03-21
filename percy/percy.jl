@@ -7,6 +7,7 @@ println("\nTraining Outputs"); display(training_outputs)
 
 weights = 2 .* rand(3) .- 1
 println("\nInitial random weights"); display(weights)
+
 for iterator = 1:20000
     global output =  map(x -> 1 / (1 + exp(-x)), layer1 * weights)  
     error = training_outputs - output
@@ -14,6 +15,9 @@ for iterator = 1:20000
     global weights += transpose(layer1) * adjustments
 end
 
-println("--\n\nWeights after training: "); display(weights)
-println("\n\nOutputs after trainging");    display(output)
-println("\n")
+println("\n--\n\nWeights after training: "); display(weights)
+println("\n\nOutputs after training");    display(output)
+
+global novel = map(x -> 1 / (1 + exp(-x)), [1 0 0] * weights)  
+
+println("\n\nOutputs for novel(untrained) case");println(novel)

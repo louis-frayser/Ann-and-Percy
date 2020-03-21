@@ -25,5 +25,5 @@ print("Percetpron out: " , output)
 print("\nFinal weights: " , synaptic_weights)
 
 
-print( "Output from new input [1 0 0 ] =>\n" ,
+print( "Output from novel input [1 0 0 ] =>\n" ,
      rmap(mul([[1,0,0]],synaptic_weights), (x) => 1/(1+ exp(-x))))

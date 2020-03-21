@@ -1,5 +1,4 @@
-module Matrix (F,hmul, mmult, transpose,  mdec, mmap, madd,
-               matsub)
+module Matrix (F,hmul, mmult, transpose,  mdec, mmap, madd, matsub)
 where
 import Data.List
 

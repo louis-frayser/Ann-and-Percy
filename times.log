@@ -1,53 +1,70 @@
-Random starting synaptic weights:
-[[-0.16595599]
- [ 0.44064899]
- [-0.99977125]]
-Synaptic weights after training:
-[[10.38040701]
- [-0.20641179]
- [-4.98452047]]
-Outputs after training
-[[0.00679672]
- [0.99445583]
- [0.99548516]
- [0.00553614]]
-real 0.38
-user 0.36
+numPy:
+Training inputs: [[0 0 1]
+ [1 1 1]
+ [1 0 1]
+ [0 1 1]]
+Training outputs: [[0]
+ [1]
+ [1]
+ [0]]
+Random starting synaptic weights: [[-0.20422507]
+ [-0.94156737]
+ [-0.28977052]]
+Synaptic weights after training: [[10.38033708]
+ [-0.20690868]
+ [-4.9841891 ]]
+Outputs after training [[0.00679896]
+ [0.99445453]
+ [0.99548634]
+ [0.00553523]]
+Output for novel input: [ 1,0,0 ] =>  [0.99996896]
+real 0.27
+user 0.26
 sys 0.00
 
-[1 of 1] Compiling Main             ( percy/perceptron.hs, percy/perceptron.o )
-
-percy/perceptron.hs:1:1: error:
-    Failed to load interface for ‘Matrix’
-    Use -v to see a list of the files searched for.
-Inputs:
+GHC:
+Training inputs:
 [[0.0,0.0,1.0],[1.0,1.0,1.0],[1.0,0.0,1.0],[0.0,1.0,1.0]]
 
+Training outputs:
+[[0.0],[1.0],[1.0],[0.0]]
+
 Random starting synaptic weights:
-[[-0.25189817],[-0.9581622],[-0.37490165]]
+[[0.30514455],[0.42772686],[0.7210243]]
 
-Weights after training: [[10.380313],[-0.20690633],[-4.9841843]]
+Weights after training: [[10.380261],[-0.20669813],[-4.9842844]]
 
-Output  after training: [[6.7989933e-3],[0.99445444],[0.9954862],[5.535267e-3]]
+Output  after training: [[6.798317e-3],[0.9944548],[0.9954855],[5.5358605e-3]]
 
 New Input and Output with trained weights:[[1.0,0.0,0.0]]=>[[0.999969]]
-real 0.35
-user 0.32
-sys 0.03
+real 0.21
+user 0.18
+sys 0.02
+
+Racket:
+
+Training inputs:
+#<array #(4 3) #[0 0 1 1 1 1 1 0 1 0 1 1]>
+
+Training outputs:
+#<array #(4 1) #[0 1 1 0]>
 
 Random starting synaptic weights:
-(array #[#[0.013461780920636546] #[0.6952133212714389] #[-0.7907773718428084]])
+#<array #(3 1) #[-0.8598535747382658 0.8532402602662275 -0.7753879943119135]>
 
 Synaptic weights after training:
-(array #[#[10.380432015675213] #[-0.20637696230615157] #[-4.984553753983959]])
+#<array #(3 1) #[10.380190589843478 -0.2063760798597186 -4.984433475753267]>
 
 Outputs after training:
-(array #[#[0.00679649695998072] #[0.994455979395658] #[0.99548512600473] #[0.005536145217884025]])
-real 14.62
-user 14.28
-sys 0.25
+#<array #(4 1) #[0.006797308963852791 0.9944553162667653 0.995484581447949 0.005536812341144865]>
 
-octave = ============== percy.m ======================================
+Output for novel input: [1 0 0 ] => 
+#<array #(1 1) #[0.9999689596203181]>
+real 10.21
+user 10.03
+sys 0.18
+
+Octave:
 training_inputs =
 
    0   0   1
@@ -62,39 +79,33 @@ training_outputs =
    1
    0
 
-sigmoid =
-
-@(x) 1 ./ (1 + exp (-x))
-
-sigderiv =
-
-@(sx) sx .* (1 - sx)
-
 synaptic_weights =
 
-  -0.268644
-   0.441197
-  -0.054876
+   0.48984
+  -0.78183
+   0.19861
 
 --
 After training...
 synaptic_weights =
 
-   10.38027
-   -0.20659
-   -4.98435
+   10.38045
+   -0.20696
+   -4.98422
 
 output =
 
-   0.0067979
-   0.9944551
-   0.9954853
-   0.0055361
+   0.0067988
+   0.9944547
+   0.9954867
+   0.0055348
 
-real 0.69
-user 0.64
-sys 0.04
+Output for novel input: [1 0 0 ] =>  0.99997
+real 0.54
+user 0.52
+sys 0.02
 
+Julia:
 Training inputs
 4×3 Array{Int64,2}:
  0  0  1
@@ -109,49 +120,53 @@ Training Outputs
  0
 Initial random weights
 3-element Array{Float64,1}:
- 0.8682389843590004
- 0.7506708923666348
- 0.5001355091384747--
+ -0.8515846094605122 
+  0.37571004930528495
+ -0.21551549995010522
+--
 
 Weights after training: 
 3-element Array{Float64,1}:
- 14.815860428551188  
- -0.37573727837189186
- -9.506456410095112  
+ 14.815718503797571  
+ -0.37576573526626345
+ -9.506342760838344  
 
-Outputs after trainging
+Outputs after training
 4-element Array{Float64,1}:
- 7.43683088866185e-5  
- 0.9928512370216287   
- 0.9950793351738225   
- 5.1076059232043224e-5
+ 7.437676106382834e-5
+ 0.9928508343230519  
+ 0.9950791967152294  
+ 5.108041070361827e-5
 
-real 2.16
-user 2.06
-sys 0.06
+Outputs for novel(untrained) case
+[0.9999996321971851]
+real 1.58
+user 1.52
+sys 0.04
 
+Node.js:
 training inputs: [ [ 0, 0, 1 ], [ 1, 1, 1 ], [ 1, 0, 1 ], [ 0, 1, 1 ] ]
 training outputs [ [ 0 ], [ 1 ], [ 1 ], [ 0 ] ]
 [
-  [ -0.2727891070080972 ],
-  [ -0.5225862553141705 ],
-  [ 0.3902862403203178 ]
+  [ 0.009183063696758698 ],
+  [ -0.15077181004051465 ],
+  [ -0.4946309854063944 ]
 ]
 Percetpron out:  [
-  [ 0.006799144456913184 ],
-  [ 0.9944543548735325 ],
-  [ 0.9954860704450236 ],
-  [ 0.005535525115411537 ]
+  [ 0.006797815337435086 ],
+  [ 0.994455205273557 ],
+  [ 0.9954857727099385 ],
+  [ 0.005535655185619729 ]
 ]
 
 Final weights:  [
-  [ 10.380250051651174 ],
-  [ -0.2068817054746022 ],
-  [ -4.984161645183664 ]
+  [ 10.380380629547899 ],
+  [ -0.20666124771243216 ],
+  [ -4.9843584760753386 ]
 ]
-Output from new input [1 0 0 ] =>
- [ [ 0.9999689614659231 ] ]
-real 1.22
-user 1.51
-sys 0.07
+Output from novel input [1 0 0 ] =>
+ [ [ 0.9999689655184792 ] ]
+real 0.69
+user 0.97
+sys 0.06
 

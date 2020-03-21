@@ -27,7 +27,7 @@ main =
   do rx <- getStdGen >>= return . randoms >>= return . take 3 :: IO [Float]
      let synaptic_weights = transpose [ map (\r -> (2 * r) - 1) rx ]
      
-     putStrLn $ "Inputs:\n" ++ show  training_inputs
+     putStrLn $ "Training inputs:\n" ++ show training_inputs ++ "\n\nTraining outputs:\n" ++show training_outputs
      
      putStrLn $ "\nRandom starting synaptic weights:\n" ++ show synaptic_weights
      
