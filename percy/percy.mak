@@ -11,6 +11,8 @@ run test runtests:: ${PTARGETS}
 	  ${TIME} percy/percy; echo;\
 	  echo "Racket:" ;\
 	  ${TIME} racket percy/percy.rkt; echo ;\
+	  echo "Typed Racket:" ;\
+	  ${TIME} racket percy/percy-typed.rkt; echo ;\
 	  echo "Octave:" ;\
 	  ${TIME} octave percy/percy.m; echo ;\
 	  echo "Julia:" ;\
@@ -20,4 +22,4 @@ run test runtests:: ${PTARGETS}
         } 2>&1 |tee times.log
 
 report:: times.log
-	egrep  '(numPy|GHC|Racket|Octave|Julia|Node.js):|real' times.log |while read app; do read _real time; printf "%-11s %5.2f\n" "$$app" "$$time";done
+	egrep  '(numPy|GHC|Racket|Octave|Julia|Node.js):|real' times.log |while read app; do read _real time; printf "%-14s %5.2f\n" "$$app" "$$time";done

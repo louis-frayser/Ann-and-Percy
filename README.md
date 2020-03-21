@@ -11,9 +11,12 @@ I also want to learn to use those web-based "science notebooks." Sage Math sound
 ### Racket
 Translating to Racket (Scheme) was challenging but much easier that re-coding this perceptron in Haskell.  The biggest benefit of Racket was probably the IDE and the ability to use very symbolic function names (matix+ for exp). Racket turned out to be pretty slow, however the docs said that Racket's typed version should be 25 to 50 times faster.
 
+#### Typed Racked 
+Sat 21 Mar 2020 08:12:16 AM PDT
+Annoting racket for types was quit difficult. It was a lot like fight the Haskell type system, maybe a little more frustrating.  I resorted to extracting parts of the code into simpler chunks that I was able to type. This this produce a bout a fivefold increase in performance.
+
 ## GHC
 Haskell took longer to write and was quite difficult to debug  In the end, its performance was equal to Python's, and that used a simple list implementation of matrices with some hand-written matrix functions.  I may try Haskell again later with a real Matrix package.
-
 
 ### Octave
 Wed 18 Mar 2020 11:32:34 PM PDT
@@ -30,14 +33,15 @@ Node.js was interestingly fast(percy.js). It produced results at 1/3 the speed o
 Fri 20 Mar
 I did quite a bit of cleanup and tried to ensure the various single-layer perceptron implementations were doing the same work. Most noticeable was the Julia's performance was 20% time spent in I/O.  Writing results really slows it down.  I adjust each package so the the had similar output. Below are updated run-times.
 
-| Tool    |      | Secs  | Language   |
-|---------|------|-------|------------|
-| GHC     | real | 0.21  | Haskell    |
-| numPy   | real | 0.27  | Python     |
-| Octave  | real | 0.54  | MATLAB     |
-| Node.js | real | 0.69  | JavaScript |
-| Julia   | real | 1.58  | Julia      |
-| Racket  | real |10.21  | Scheme     |
+| Tool         |      | Secs  | Language   |
+|--------------|------|-------|------------|
+| GHC          | real | 0.21  | Haskell    |
+| numPy        | real | 0.27  | Python     |
+| Octave       | real | 0.54  | MATLAB     |
+| Node.js      | real | 0.69  | JavaScript |
+| Julia        | real | 1.58  | Julia      |
+| Typed Racket | real | 2.34  | Scheme     |
+| Racket       | real |10.21  | Scheme     |
 
 ## References
 
