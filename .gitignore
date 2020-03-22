@@ -6,4 +6,4 @@ Attic/
 *.o
 [#]*
 node_modules/
-percy/percy
+percy

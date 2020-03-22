@@ -10,7 +10,7 @@ include percy/percy.mak
 	ghc -O3 -ipercy --make $@
 
 % : %.scm
-	csc -O3 -local -f -inline -strict-types $<
+	csc -O3 -local  -inline -strict-types $<
 
 all:: ${TARGETS}
 

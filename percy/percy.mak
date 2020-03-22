@@ -1,6 +1,7 @@
 #-*-makefile-*-
 PTARGETS=percy/percy percy/chicken/percy
 SrcDirs+=percy/chicken
+all:: ${PTARGETS}
 
 run test runtests:: ${PTARGETS}
 	 { echo "numPy:";\
