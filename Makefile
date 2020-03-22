@@ -9,6 +9,9 @@ include percy/percy.mak
 % : %.hs
 	ghc -O3 -ipercy --make $@
 
+% : %.scm
+	csc -O3 -local -f -inline -strict-types $<
+
 all:: ${TARGETS}
 
 

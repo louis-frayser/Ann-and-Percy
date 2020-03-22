@@ -1,5 +1,5 @@
 #lang racket
-;;-*-Scheme-*-
+;-*-Scheme-*-
 (require math/matrix)
 
 (define (sigmoid x)(/ 1.0 (+ 1 (exp (- x)))))
