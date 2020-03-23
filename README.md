@@ -13,7 +13,7 @@ Translating the 1 layer perceptron code to Racket (Scheme) was challenging but m
 
 #### Typed Racked 
 Sat 21 Mar 2020 08:12:16 AM PDT
-Annoting racket for types was quit difficult. It was a lot like fight the Haskell type system, maybe a little more frustrating.  I resorted to extracting parts of the code into simpler chunks that I was able to type. Typing produce about a fivefold increase in performance.
+Annotating racket for types was quit difficult. It was a lot like fight the Haskell type system, maybe a little more frustrating.  I resorted to extracting parts of the code into simpler chunks that I was able to type. Typing produce about a five-fold increase in performance.
 
 ## GHC
 Haskell took longer to write and was quite difficult to debug  In the end, its performance was equal to Python's, even though I used a simple list-based implementation of matrices with some hand-written matrix functions.  I may try Haskell again later with a real Matrix package.
@@ -23,7 +23,7 @@ Wed 18 Mar 2020 11:32:34 PM PDT
 I coded the perceptron (percy.m) in Octave a MATLAB clone.  Octave was such a joy (no pun). Everything was builtin and the syntax was natural. No need to add print statements, just leave off the semicolons and expressions automatically print. Alas, Octave was only half as fast as the homegrown Haskell (or numPy) implementations of Percy the perceptron. 
 
 ### Julia
-Julia was a disappointment, not as simple as Octave when it came to using matrix operations.  Matrix M => Exp^M required writing the function (because square matrices). 1 - M also was a problem. Julia in general made me research and use alternate methods for matrix operations.  It's strict--maybe that's a good thing.  Performance was slow about 5-1/2 times as long to run as Haskell (or numPy), yet still way faster than untiped Racket. 
+Julia was a disappointment, not as simple as Octave when it came to using matrix operations.  Matrix M => Exp^M required writing the function (because square matrices). 1 - M also was a problem. Julia in general made me research and use alternate methods for matrix operations.  It's strict--maybe that's a good thing.  Performance was slow about 5-1/2 times as long to run as Haskell (or numPy), yet still way faster than untyped Racket. 
 
 ### JavaScript
 Fri 20 Mar 2020 01:01:08 PM PDT
@@ -31,7 +31,12 @@ Node.js was interestingly fast(percy.js). It produced results at 1/3 the speed o
 
 ### Chicken Scheme
 Sun 22 Mar 2020 
-Very interesting! Good distributed packaging system. It's pretty fast for this appliction.
+Very interesting! Good distributed packaging system. It's pretty fast for this application.
+
+### Fricas (Axiom)
+Sun 22 Mar 202
+I've learned a lot about Fricas and coded the perceptron in it. I'm appreciating it more as I work with it.  It's not very fast but it has a compiler that may speed things up a bit. Below are are interpreter stats. Fricas is more of a CAS than it is a numerical analysis package.
+
 
 ## Benchmarks 
 Fri 20 Mar
@@ -45,14 +50,15 @@ Benchmarks updated for Chicken scheme.
 |----------------|-------|-----------------|
 | GHC            |  0.21 | Haskell         |
 | numPy          |  0.27 | Python          |
-| CSC Chicken    |  0.42 | Compiled Scheme | 
+| CSC Chicken    |  0.41 | Compiled Scheme | 
 | Octave         |  0.54 | MATLAB          | 
 | Node.js        |  0.68 | JavaScript      | 
 | CSI Chicken    |  0.77 | Scheme          |
 | Julia          |  1.55 | Julia           |
 | Typed Racket   |  2.36 | Typed Scheme    | 
 | Racket         | 10.12 | Scheme          |
-+----------------+-------+-----------------+
+| Fricas         | 10.68 | Fricas/Axiom    |
+
 
 ## References
 
