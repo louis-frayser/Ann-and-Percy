@@ -1,0 +1,70 @@
+Fricas:
+      .
+   "1,2,3: training_inputs, training_weights, training_outputs..."
+
+        +0.0  0.0  1.0+
+        |             |
+        |1.0  1.0  1.0|
+   (6)  |             |
+        |1.0  0.0  1.0|
+        |             |
+        +0.0  1.0  1.0+
+
+
+        + 28.0481130712_7011355 +
+        |                       |
+   (8)  |0.1327837624_2849829391|
+        |                       |
+        +0.2817845294_6177987168+
+
+        +0.0+
+        |   |
+        |1.0|
+   (9)  |   |
+        |1.0|
+        |   |
+        +0.0+
+
+   (11)  "***4,5. OUTPUT and WEIGHTS after training:"
+
+         +0.0047971791_8477415490_6 +
+         |                          |
+         | 0.9999999995_5566229316  |
+   (12)  |                          |
+         | 0.9999999998_6329483513  |
+         |                          |
+         +0.0014808208_0288092046_41+
+
+         + 28.0481130712_70115607 +
+         |                        |
+   (13)  |- 1.1787605386_064158652|
+         |                        |
+         +- 5.3349435731_858683455+
+
+   (14)
+   "*** 6. OUTPUT with trained weights for the novel input: { 1, 0, 0 } => "
+   Compiling function outfunc with type Matrix(NonNegativeInteger) -> 
+
+   (15)  [0.9999999999_9934103968]
+
+Checking for foreign routines
+FRICAS="/usr/lib64/fricas/target/x86_64-pc-linux-gnu"
+spad-lib="/usr/lib64/fricas/target/x86_64-pc-linux-gnu/lib/libspad.so"
+foreign routines found
+openServer result 0
+                       FriCAS Computer Algebra System 
+                            Version: FriCAS 1.3.6
+                 Timestamp: Sun 22 Mar 2020 06:07:56 PM PDT
+-----------------------------------------------------------------------------
+   Issue )copyright to view copyright notices.
+   Issue )summary for a summary of useful system commands.
+   Issue )quit to leave FriCAS and return to shell.
+-----------------------------------------------------------------------------
+ 
+reading: integer: Connection reset by peer
+reading: integer: Connection reset by peer
+
+
+real 10.68
+user 10.41
+sys 0.07

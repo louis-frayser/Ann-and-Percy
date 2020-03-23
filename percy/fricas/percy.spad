@@ -1,0 +1,27 @@
+-- -*-axiom-*-
+rfloat == (randnum()/randnum())::Float;
+sigmoid(x) == 1 / (1 + exp(-x))::Float;
+sigderiv(x) == x * (1 - x)::Float;
+outfunc(inp) ==  map(sigmoid, inp * synaptic_weights )::Matrix(Float);
+-- -----------------------------------------------------------------------------
+print("1,2,3: training_inputs, training_weights, training_outputs...");
+training_inputs  : Matrix(Float) := matrix[[0,0,1],[1,1,1],  [1,0,1], [0,1,1]]
+input_layer      : Matrix(Float) := training_inputs;
+synaptic_weights : Matrix(Float) := matrix[[rfloat()], [rfloat()], [rfloat()]]
+training_outputs : Matrix(Float) := matrix[[0],[1],[1],[0]] 
+-- -----------------------------------------------------------------------------
+
+for i in 1..20000 repeat
+  pout := outfunc(input_layer)
+  error := training_outputs - pout
+  adjustments := map(*,error, map(sigderiv, pout))
+  synaptic_weights :=  synaptic_weights+  transpose(input_layer) * adjustments
+
+-- -----------------------------------------------------------------------------
+"***4,5. OUTPUT and WEIGHTS after training:"
+pout
+synaptic_weights
+
+"*** 6. OUTPUT with trained weights for the novel input: { 1, 0, 0 } => "
+outfunc(matrix[[1,0,0]])
+

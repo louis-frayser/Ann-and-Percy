@@ -1,7 +1,11 @@
 #-*-makefile-*-
-PTARGETS=percy/percy percy/chicken/percy
+PTARGETS=percy/percy percy/chicken/percy 
 SrcDirs+=percy/chicken
+PREPORTS=times.log
 all:: ${PTARGETS}
+
+include percy/fricas/fricas.mak
+
 
 run test runtests:: ${PTARGETS}
 	 { echo "numPy:";\
@@ -24,8 +28,10 @@ run test runtests:: ${PTARGETS}
 	  ${TIME} csi -s percy/chicken/percy.scm; echo  ;\
         } 2>&1 |tee times.log
 
-report:: times.log
-	@egrep  '(numPy|GHC|Racket|Octave|Julia|Node.js|Chicken):|real' times.log |while read app; do read _real time; printf "| %-14s | %5.2f |\n" "$${app%:}" "$$time";done |sort -t'|' -k3n
+report:: ${PREPORTS}
+
+	@egrep  '(numPy|GHC|Racket|Octave|Julia|Node.js|Chicken|Fricas):|real' ${PREPORTS} |while read app0; do read _real time; app=$${app0#*:}; printf "| %-12s | %5.2f |\n" "$${app%:}" "$$time";done |sort -t'|' -k3n
 
 percy/percy : percy/Matrix.hs
 percy/chicken/chicken : percy/chicken/percy.scm
+

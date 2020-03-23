@@ -1,9 +1,10 @@
-*~
 *.hi
-perceptron
-Attic/
-.#*
 *.o
+*~
+.#*
+Attic/
 [#]*
 node_modules/
-percy
+perceptron
+percy/percy
+percy/*/percy
