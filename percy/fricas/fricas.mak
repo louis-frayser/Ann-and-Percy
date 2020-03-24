@@ -18,13 +18,20 @@ ${pfReport}: ${pfLog}
 	egrep -v "Algebra|Compiling|Float|Type|$<" $< >>$@
 	echo >> $@
 	egrep -v reading: ${pfTlog} |tee -a $@
+	rm ${pfTlog}
 
 .ONESHELL:
-${pfLog} : ${pfSrc} ${pfHOME}/*.mak
-	@INPUT=${pfHOME}/percy.input
-	echo ")set output algebra ${pfLog}" > $$INPUT
-	echo ")set output algebra on" >> $$INPUT
-	cat $< >> $$INPUT
-	echo -e ")set output algebra console\r)q" >> $$INPUT
-	${TIME} fricas ${FRCSFLAGS} \
-		-eval ")read $$INPUT" 2> ${pfTlog} >/dev/null
+define run-fricas = 
+  @set -e; src=$(firstword $^) 
+  input=$${src%.spad}.input
+  echo ")set output algebra ${pfLog}" > $$input
+  echo ")set output algebra on" >> $$input
+  cat $< >> $$input
+  echo -e ")set output algebra console\n)q" >> $$input
+  ${TIME} fricas ${FRCSFLAGS} \
+     -eval ")read $$input" 2> ${pfTlog} >/dev/null
+endef
+
+${pfLog} : ${pfSrc} ${pfHOME}/fricas.mak
+	 $(run-fricas)
+
