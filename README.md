@@ -15,7 +15,7 @@ Translating the 1 layer perceptron code to Racket (Scheme) was challenging but m
 Sat 21 Mar 2020 08:12:16 AM PDT
 Annotating racket for types was quit difficult. It was a lot like fight the Haskell type system, maybe a little more frustrating.  I resorted to extracting parts of the code into simpler chunks that I was able to type. Typing produce about a five-fold increase in performance.
 
-## GHC
+### GHC
 Haskell took longer to write and was quite difficult to debug  In the end, its performance was equal to Python's, even though I used a simple list-based implementation of matrices with some hand-written matrix functions.  I may try Haskell again later with a real Matrix package.
 
 ### Octave
