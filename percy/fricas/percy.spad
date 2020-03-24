@@ -4,7 +4,7 @@ sigmoid(x) == 1 / (1 + exp(-x))::Float;
 sigderiv(x) == x * (1 - x)::Float;
 outfunc(inp) ==  map(sigmoid, inp * synaptic_weights )::Matrix(Float);
 -- -----------------------------------------------------------------------------
-print("1,2,3: training_inputs, training_weights, training_outputs...");
+print("***1,2,3: training_inputs, training_weights, training_outputs...");
 training_inputs  : Matrix(Float) := matrix[[0,0,1],[1,1,1],  [1,0,1], [0,1,1]]
 input_layer      : Matrix(Float) := training_inputs;
 synaptic_weights : Matrix(Float) := matrix[[rfloat()], [rfloat()], [rfloat()]]

@@ -7,7 +7,7 @@ PREPORTS+=${pfReport}
 pfLog=${pfHOME}/fricas.log
 pfSrc=${pfHOME}/percy.spad
 pfTlog=${pfHOME}/fricas.tmp
-FRCSFLAGS=-nox
+FRCSFLAGS=-nox 
 pf : ${pfReport}
 	less $<
 
@@ -15,15 +15,16 @@ runtests test run:: ${pfReport}
 
 ${pfReport}: ${pfLog}
 	echo Fricas: >$@
-	egrep -v "Algebra|Float|X11|Type|$<" $< >>$@
+	egrep -v "Algebra|Compiling|Float|Type|$<" $< >>$@
 	echo >> $@
-	egrep -v Doc ${pfTlog} |tee -a $@
+	egrep -v reading: ${pfTlog} |tee -a $@
 
-
+.ONESHELL:
 ${pfLog} : ${pfSrc} ${pfHOME}/*.mak
-	@INPUT=${pfHOME}/.axiom.input ;\
-	echo ")set output algebra ${pfLog}" > $$INPUT ;\
-	echo ")set output algebra on" >> $$INPUT ;\
-	cat $< >> $$INPUT ;\
-	echo -e ")set output algebra console\n)quit" >> $$INPUT ;\
-	HOME=${pfHOME} ${TIME} fricas ${FRCFLAGS}  >& ${pfTlog}
+	@INPUT=${pfHOME}/percy.input
+	echo ")set output algebra ${pfLog}" > $$INPUT
+	echo ")set output algebra on" >> $$INPUT
+	cat $< >> $$INPUT
+	echo -e ")set output algebra console\r)q" >> $$INPUT
+	${TIME} fricas ${FRCSFLAGS} \
+		-eval ")read $$INPUT" 2> ${pfTlog} >/dev/null
