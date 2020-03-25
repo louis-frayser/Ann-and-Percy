@@ -1,5 +1,4 @@
 Fricas:
-      .
    "***1,2,3: training_inputs, training_weights, training_outputs..."
 
         +0.0  0.0  1.0+
@@ -47,6 +46,6 @@ Fricas:
    (15)  [0.9999999999_9934103968]
 
 
-real 10.64
-user 10.38
-sys 0.05
+real 11.71
+user 10.45
+sys 0.07

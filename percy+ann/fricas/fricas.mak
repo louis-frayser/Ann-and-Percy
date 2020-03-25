@@ -1,6 +1,6 @@
 #-*-make-*-
 #### Percy in Frickas (Axiom)
-pfHOME=${PWD}/percy/fricas
+pfHOME=${PASUB}/fricas
 SrcDirs+=${pfHOME}
 pfReport=${pfHOME}/fricas.rpt
 PREPORTS+=${pfReport}

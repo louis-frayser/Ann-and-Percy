@@ -1,13 +1,14 @@
 TIME = time -p
 TARGETS=
-SrcDirs=. percy
+PASUB=percy+ann
+SrcDirs=. ${PASUB}
 
-include percy/percy.mak
+include ${PASUB}/p+a.mak
 
 .SUFFIXES: .hs
 
 % : %.hs
-	ghc -O3 -ipercy --make $@
+	ghc -O3 -i${PASUB} --make $@
 
 % : %.scm
 	csc -O3 -local  -inline -strict-types $<

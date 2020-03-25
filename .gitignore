@@ -6,5 +6,4 @@ Attic/
 [#]*
 node_modules/
 perceptron
-percy/percy
-percy/*/percy
+percy
