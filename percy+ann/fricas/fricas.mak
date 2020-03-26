@@ -7,7 +7,7 @@ PREPORTS+=${pfReport}
 pfLog=${pfHOME}/fricas.log
 pfSrc=${pfHOME}/percy.spad
 pfTlog=${pfHOME}/fricas.tmp
-FRCSFLAGS=-nox 
+FRCSFLAGS=-nox  -noht
 pf : ${pfReport}
 	less $<
 
