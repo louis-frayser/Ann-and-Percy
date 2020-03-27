@@ -1,0 +1,107 @@
+--- 
+title: "Artificial Neural Networks  in R"
+author: "Louis Frayser"
+date: 2020-03-26
+output: html_notebook
+---
+
+This is an R notebook notebook implementaiton of a [Ann & Percy](https://github.com/louis-frayser/Ann-and-Percy#create-a-simple-neural-network-in-python-from-scratch) a series of exercies of my coding a single-layer perceptron dubbed "Percy"^["Perc"eptron], and a double-layer one called Ann^[ANN]. In previous implemenetaion I benchmarked and tested various compilers and interpreters for ease of use.  Now, I'll be trying out as many notebook products as I can.
+
+## One and Two-Layer Perceptrons
+Taking a look at two perctrons. The simplist, and on with a hidden layer.
+
+### Percy the Single-Layer Perceptron
+The perceptro is presented with sample input and corresponding  output datum.  The duty of the perceptron is to produce anagalous output given other similar input.
+
+The perceptron accomplishes this by producing an out put commparing its' output to the the exepeted one , then adapting.  Adaption is acomplish by ajusting the sensitiveof he inputs the the input data.
+
+<!--- 
+NOTE: Code can be executed by pressing the run button or entering *Cntrl-Shft-Enter* in a code box.
+-->
+### Inputs
+The perceptro is presented with sample input and corresponding  utput datum.  In this case, 4 inputs with corresponding otuputs, in the form adn iput matrix and an output matrix.  It this was the perceptron is show by example what to do.  It is up to the perceptron to produce anagolous otuput for similar input, even the the input isn't exactly a sample that it's trained on.
+
+The training inputs are applied to the input layer in this case. The traing is aplied biased by seperate random weights on each input.
+
+<!--  NOTE
+I'm getting a */bin/sh: ---: command not found* message.  RStudio seems to trying to execute this whole fiel as a chell script.  Adding #! /usr/bin/R to the top fixes that, but then that gives an ugly title :D
+Clear that error message (click the [x]) before publishing.
+-->
+
+```{r input_decl }
+input_layer <- training_inputs <- 
+  matrix(c(0,0,1, 1,1,1,  1,0,1, 0,1,1), 4, 3, byrow=TRUE,
+           dimnames=list(c("sample1","sample2","sample3","sample4"), c("2^2","2^1","2^0")))
+
+# Random weights
+synaptic_weights <-  2 * matrix(runif(3,0,1),3,1,byrow=TRUE) - 1
+dimnames(synaptic_weights) <- list(c("2^0","2^1","2^2"),c("weights"))
+
+## Show input layer
+print(input_layer)
+print(synaptic_weights)
+```
+
+In order to teach the network what it's expected to learn, a set of corresponding trainging outputs are presented along with the inputs. Notice the verticle orientation of the outputs.  Also it's helpful to decern the partern the the net is expected to learn.
+```{r training_out_decl}
+training_outputs <- matrix( c(0,1,1,0),4,1,TRUE,
+                            dimnames=list(c("smpl 1","smpl 2","smpl 3","smpl 4"),c("trn out"))) 
+print(training_outputs)
+```
+#### Output
+The network needs a method to produce output and compare it to the desired output. The sigmoid function $sigmoid(x) = 1/(1+e^-x)$ maps the input layer's weighted values to the outputs.
+
+```{r out_fun_decl}
+e=exp(1)
+sigmoid <- function(x){ 1 /(1 + e^-x) }
+#sigmoid <- function(x){ 1 /(1 + exp(-x) )}
+
+output_function <- function(input){ sigmoid(input %*% synaptic_weights) }
+x <- seq(-1.0,1.0,0.05)
+plot(x, sigmoid0(10*x))
+```
+#### Feedbak
+During training, the ouput it compared to the training value.  Error is the difference between the training valued and the actual value.  An adjust is made to the weights based on the error value and the derivitave if the output function
+```{r deriv_decl}
+sigderiv <- function(sig){ sig * (1 - sig)}
+plot(x,sigderiv(x))
+```
+#### Train (aka Rise and repeat)...
+Now the training begins:
+Repeatedly calculated output
+compere output to training value
+Used the difference (error) as feedback to adjust the weights for a better output the nexta time around.
+
+```{r loop}
+
+for(iterator in 1:20000){
+  outputs <- sigmoid(input_layer %*% synaptic_weights) #output_function(input_layer)
+  errors  <- training_outputs - outputs
+  adjustments <- errors * sigderiv(outputs)
+  synaptic_weights <- synaptic_weights + t(input_layer) %*% adjustments
+  #if(i %% 3000 == 0){ print(errors)}
+}
+ 
+```
+ 
+
+#### Output  After Training
+We trained for a certain output pattern corresponding to certain inptus.
+```{r result}
+colnames(outputs) <- c("output")
+print(outputs)
+
+```
+
+#### Weights After Training
+The real purpose of training is to produce this weighs thate are now useful for solving novel inputs 
+```{r final_weights}
+print(synaptic_weights)
+
+```
+synaptic_weights
+
+"*** 6. OUTPUT with trained weights for the novel input: { 1, 0, 0 } => "
+outfunc(matrix( c(1,0,0), 1,3))
+
+### Ann the Two-Layer Perceptron

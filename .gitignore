@@ -7,3 +7,7 @@ Attic/
 node_modules/
 perceptron
 percy
+.Rhistory
+percy+ann/fricas/fricas.log
+percy+ann/fricas/percy.input
+.Rproj.user
