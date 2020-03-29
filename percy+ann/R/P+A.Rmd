@@ -5,10 +5,34 @@ date: 2020-03-26
 output: html_notebook
 ---
 
-This is an R notebook notebook implementaiton of a [Ann & Percy](https://github.com/louis-frayser/Ann-and-Percy#create-a-simple-neural-network-in-python-from-scratch) a series of exercies of my coding a single-layer perceptron dubbed "Percy"^["Perc"eptron], and a double-layer one called Ann^[ANN]. In previous implemenetaion I benchmarked and tested various compilers and interpreters for ease of use.  Now, I'll be trying out as many notebook products as I can.
+This is an R notebook notebook implementaiton of a [Ann & Percy](https://github.com/louis-frayser/Ann-and-Percy#create-a-simple-neural-network-in-python-from-scratch) a series of exercies of my coding a single-layer perceptron dubbed "Percy"^["Perc"eptron], plus for the fist time I study a double-layer one called Ann^[ANN]. In previous exercises I tested various compilers and interpreters for performance and ease of use.  In this notebook, I'll explain the workings of these perceptrons and the how the code works in R.
 
 ## One and Two-Layer Perceptrons
-Taking a look at two perctrons. The simplist, and on with a hidden layer.
+Taking a look at two perctrons, a most simple one, and one with a hidden layer.
+
+### Terminology
+
+: Some descriptions*
+
++-------------------+-------------------------------------------------------------------------------+
+| Term              | Explanation                                                                   | 
++===================+===============================================================================+
+| Input(s)          | The training inputs, or the acatual input data(after traiing)                 |
++-------------------+-------------------------------------------------------------------------------+
+| Bias              |  A special input designed to skew the others                                  |
++-------------------+-------------------------------------------------------------------------------+
+| weights           | Individual adjust for each input                                              |
++-------------------+-------------------------------------------------------------------------------+
+| network inputs    | Inputs with the weights (and bias if any) applied                             | 
++-------------------+-------------------------------------------------------------------------------+
+| summer            | An adder of weighted inputs and the bias                                      |
++-------------------+-------------------------------------------------------------------------------+
+| transfer function | Also called an activation funcion. Poduces output matched for the next stage  |
++-------------------+-------------------------------------------------------------------------------+
+| neuron ouput      | output of the transfer function                                               | 
++-------------------+-------------------------------------------------------------------------------+
+
+*[details](https://g.co/kgs/6hjevG)
 
 ### Percy the Single-Layer Perceptron
 The perceptro is presented with sample input and corresponding  output datum.  The duty of the perceptron is to produce anagalous output given other similar input.
@@ -16,9 +40,11 @@ The perceptro is presented with sample input and corresponding  output datum.  T
 The perceptron accomplishes this by producing an out put commparing its' output to the the exepeted one , then adapting.  Adaption is acomplish by ajusting the sensitiveof he inputs the the input data.
 
 <!--- 
-NOTE: Code can be executed by pressing the run button or entering *Cntrl-Shft-Enter* in a code box.
+NOTE: Rmarkdown uses SGML commetns. 
 -->
-### Inputs
+
+
+#### Inputs
 The perceptro is presented with sample input and corresponding  utput datum.  In this case, 4 inputs with corresponding otuputs, in the form adn iput matrix and an output matrix.  It this was the perceptron is show by example what to do.  It is up to the perceptron to produce anagolous otuput for similar input, even the the input isn't exactly a sample that it's trained on.
 
 The training inputs are applied to the input layer in this case. The traing is aplied biased by seperate random weights on each input.
@@ -48,60 +74,72 @@ training_outputs <- matrix( c(0,1,1,0),4,1,TRUE,
                             dimnames=list(c("smpl 1","smpl 2","smpl 3","smpl 4"),c("trn out"))) 
 print(training_outputs)
 ```
-#### Output
-The network needs a method to produce output and compare it to the desired output. The sigmoid function $sigmoid(x) = 1/(1+e^-x)$ maps the input layer's weighted values to the outputs.
+##### Output
+Matrix multiplicaton multiplies the inputs by the weights and summs the products. We use the the logistic function as our sigmoid transfer function. $sigmoid(x) = 1/(1+e^-x)$ maps the input layer's weighted values to the outputs.
 
 ```{r out_fun_decl}
 e=exp(1)
 sigmoid <- function(x){ 1 /(1 + e^-x) }
-#sigmoid <- function(x){ 1 /(1 + exp(-x) )}
 
-output_function <- function(input){ sigmoid(input %*% synaptic_weights) }
+output_function <- function(input=input_layer,bias=synaptic_weights){ sigmoid(input %*% bias) }
 x <- seq(-1.0,1.0,0.05)
-plot(x, sigmoid0(10*x))
+plot(x, sigmoid(10*x))
 ```
-#### Feedbak
+##### Feedbak
 During training, the ouput it compared to the training value.  Error is the difference between the training valued and the actual value.  An adjust is made to the weights based on the error value and the derivitave if the output function
 ```{r deriv_decl}
 sigderiv <- function(sig){ sig * (1 - sig)}
 plot(x,sigderiv(x))
+rm(x)
 ```
-#### Train (aka Rise and repeat)...
+##### Training
+
 Now the training begins:
-Repeatedly calculated output
-compere output to training value
-Used the difference (error) as feedback to adjust the weights for a better output the nexta time around.
+
+For the 4 training inputs repeatedly calculate: 
+
+* Network inputs = summer (inputs x weigts). NOTE: The matrix product (%*%) multiplies and sums. 
+* Neuron output = transfer function (aka activation function) applied to network input
+* Error = actual output - training outputs
+* Feedback, adjustment 
+
+The steps above are repeated until we see that the actual output is pretty much these same as the training output.
 
 ```{r loop}
-
-for(iterator in 1:20000){
-  outputs <- sigmoid(input_layer %*% synaptic_weights) #output_function(input_layer)
-  errors  <- training_outputs - outputs
-  adjustments <- errors * sigderiv(outputs)
-  synaptic_weights <- synaptic_weights + t(input_layer) %*% adjustments
-  #if(i %% 3000 == 0){ print(errors)}
+train <- function(){
+  for(iterator in 1:20000){
+    # net_inputs = input_layer x synaptic_weights. Sigmoid is our transfer function
+    outputs <- sigmoid(input_layer %*% synaptic_weights) #output_function(input_layer)
+    errors  <- training_outputs - outputs
+    adjustments <- errors * sigderiv(outputs)
+    synaptic_weights <- synaptic_weights + t(input_layer) %*% adjustments
+  }
+  colnames(outputs) <- c("output")
+  print(outputs)
+  print(synaptic_weights)
+  #assign("synaptic_weights", synaptic_weights, envir = .GlobalEnv)
+  return(synaptic_weights)
 }
- 
-```
- 
-
-#### Output  After Training
-We trained for a certain output pattern corresponding to certain inptus.
-```{r result}
-colnames(outputs) <- c("output")
-print(outputs)
-
+#trained_weights <- train()  
+system.time(trained_weights<-train())
 ```
 
-#### Weights After Training
+
+##### Weights After Training
 The real purpose of training is to produce this weighs thate are now useful for solving novel inputs 
 ```{r final_weights}
-print(synaptic_weights)
+print(trained_weights)
 
 ```
-synaptic_weights
 
-"*** 6. OUTPUT with trained weights for the novel input: { 1, 0, 0 } => "
-outfunc(matrix( c(1,0,0), 1,3))
+##### Output of trained neuron for novel input
+```{r fin}
+print(new_input <- matrix(c( 1, 0, 0 ), 1,3,TRUE,dimnames = list(c("input"),c("x4","x2","x1"))))
+
+new_output <- output_function(new_input, trained_weights)
+dimnames(new_output) <- list(c("1 value"),c("output")) 
+print(new_output)
+```
 
 ### Ann the Two-Layer Perceptron
+#### Crouching Sigmoid Hidden Layer
