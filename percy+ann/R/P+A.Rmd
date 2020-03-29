@@ -5,52 +5,52 @@ date: 2020-03-26
 output: html_notebook
 ---
 
-This is an R notebook notebook implementaiton of a [Ann & Percy](https://github.com/louis-frayser/Ann-and-Percy#create-a-simple-neural-network-in-python-from-scratch) a series of exercies of my coding a single-layer perceptron dubbed "Percy"^["Perc"eptron], plus for the fist time I study a double-layer one called Ann^[ANN]. In previous exercises I tested various compilers and interpreters for performance and ease of use.  In this notebook, I'll explain the workings of these perceptrons and the how the code works in R.
+This is an R notebook notebook implementation of a [Ann & Percy](https://github.com/louis-frayser/Ann-and-Percy#create-a-simple-neural-network-in-python-from-scratch) a series of exercises of my coding a single-layer perceptron dubbed "Percy"^["Perc"eptron], plus for the fist time I study a double-layer one called Ann^[ANN]. In previous exercises I tested various compilers and interpreters for performance and ease of use.  In this notebook, I'll explain the workings of these perceptrons and the how the code works in R.
 
 ## One and Two-Layer Perceptrons
-Taking a look at two perctrons, a most simple one, and one with a hidden layer.
+Taking a look at two perceptrons, a most simple one, and one with a hidden layer.
 
 ### Terminology
 
 : Some descriptions*
 
-+-------------------+-------------------------------------------------------------------------------+
-| Term              | Explanation                                                                   | 
-+===================+===============================================================================+
-| Input(s)          | The training inputs, or the acatual input data(after traiing)                 |
-+-------------------+-------------------------------------------------------------------------------+
-| Bias              |  A special input designed to skew the others                                  |
-+-------------------+-------------------------------------------------------------------------------+
-| weights           | Individual adjust for each input                                              |
-+-------------------+-------------------------------------------------------------------------------+
-| network inputs    | Inputs with the weights (and bias if any) applied                             | 
-+-------------------+-------------------------------------------------------------------------------+
-| summer            | An adder of weighted inputs and the bias                                      |
-+-------------------+-------------------------------------------------------------------------------+
-| transfer function | Also called an activation funcion. Poduces output matched for the next stage  |
-+-------------------+-------------------------------------------------------------------------------+
-| neuron ouput      | output of the transfer function                                               | 
-+-------------------+-------------------------------------------------------------------------------+
++-------------------+--------------------------------------------------------------------------------+
+| Term              | Explanation                                                                    | 
++===================+================================================================================+
+| Input(s)          | The training inputs, or the actual input data(after training)                  |
++-------------------+--------------------------------------------------------------------------------+
+| Bias              |  A special input designed to skew the others                                   |
++-------------------+--------------------------------------------------------------------------------+
+| weights           | Individual adjust for each input                                               |
++-------------------+--------------------------------------------------------------------------------+
+| network inputs    | Inputs with the weights (and bias if any) applied                              | 
++-------------------+--------------------------------------------------------------------------------+
+| summer            | An adder of weighted inputs and the bias                                       |
++-------------------+--------------------------------------------------------------------------------+
+| transfer function | Also called an activation function. Produces output matched for the next stage |
++-------------------+--------------------------------------------------------------------------------+
+| neuron output     | output of the transfer function                                                | 
++-------------------+--------------------------------------------------------------------------------+
 
 *[details](https://g.co/kgs/6hjevG)
 
 ### Percy the Single-Layer Perceptron
-The perceptro is presented with sample input and corresponding  output datum.  The duty of the perceptron is to produce anagalous output given other similar input.
+The perceptron is presented with sample input and corresponding  output datum.  The duty of the perceptron is to produce analogous output given other similar input.
 
-The perceptron accomplishes this by producing an out put commparing its' output to the the exepeted one , then adapting.  Adaption is acomplish by ajusting the sensitiveof he inputs the the input data.
+The perceptron accomplishes this by producing an out put comparing its' output to the the expected one , then adapting.  Adaption is accomplished by adjusting the sensitivity he inputs the the input data.
 
 <!--- 
-NOTE: Rmarkdown uses SGML commetns. 
+NOTE: Rmarkdown uses SGML comments. 
 -->
 
 
 #### Inputs
-The perceptro is presented with sample input and corresponding  utput datum.  In this case, 4 inputs with corresponding otuputs, in the form adn iput matrix and an output matrix.  It this was the perceptron is show by example what to do.  It is up to the perceptron to produce anagolous otuput for similar input, even the the input isn't exactly a sample that it's trained on.
+The perceptron is presented with sample input and corresponding  output datum.  In this case, 4 inputs with corresponding outputs, in the form and input matrix and an output matrix.  It this was the perceptron is show by example what to do.  It is up to the perceptron to produce analogous output for similar input, even the the input isn't exactly a sample that it's trained on.
 
-The training inputs are applied to the input layer in this case. The traing is aplied biased by seperate random weights on each input.
+The training inputs are applied to the input layer in this case. The training is applied biased by separate random weights on each input.
 
 <!--  NOTE
-I'm getting a */bin/sh: ---: command not found* message.  RStudio seems to trying to execute this whole fiel as a chell script.  Adding #! /usr/bin/R to the top fixes that, but then that gives an ugly title :D
+I'm getting a */bin/sh: ---: command not found* message.  RStudio seems to trying to execute this whole file as a shell script.  Adding #! /usr/bin/R to the top fixes that, but then that gives an ugly title :D
 Clear that error message (click the [x]) before publishing.
 -->
 
@@ -68,14 +68,14 @@ print(input_layer)
 print(synaptic_weights)
 ```
 
-In order to teach the network what it's expected to learn, a set of corresponding trainging outputs are presented along with the inputs. Notice the verticle orientation of the outputs.  Also it's helpful to decern the partern the the net is expected to learn.
+In order to teach the network what it's expected to learn, a set of corresponding training outputs are presented along with the inputs. Notice the vertical orientation of the outputs.  Also it's helpful to discern the pattern the the net is expected to learn.
 ```{r training_out_decl}
 training_outputs <- matrix( c(0,1,1,0),4,1,TRUE,
                             dimnames=list(c("smpl 1","smpl 2","smpl 3","smpl 4"),c("trn out"))) 
 print(training_outputs)
 ```
 ##### Output
-Matrix multiplicaton multiplies the inputs by the weights and summs the products. We use the the logistic function as our sigmoid transfer function. $sigmoid(x) = 1/(1+e^-x)$ maps the input layer's weighted values to the outputs.
+Matrix multiplication multiplies the inputs by the weights and sums the products. We use the the logistic function as our sigmoid transfer function. $sigmoid(x) = 1/(1+e^-x)$ maps the input layer's weighted values to the outputs.
 
 ```{r out_fun_decl}
 e=exp(1)
@@ -85,8 +85,8 @@ output_function <- function(input=input_layer,bias=synaptic_weights){ sigmoid(in
 x <- seq(-1.0,1.0,0.05)
 plot(x, sigmoid(10*x))
 ```
-##### Feedbak
-During training, the ouput it compared to the training value.  Error is the difference between the training valued and the actual value.  An adjust is made to the weights based on the error value and the derivitave if the output function
+##### Feedback
+During training, the output it compared to the training value.  Error is the difference between the training valued and the actual value.  An adjust is made to the weights based on the error value and the derivative if the output function
 ```{r deriv_decl}
 sigderiv <- function(sig){ sig * (1 - sig)}
 plot(x,sigderiv(x))
@@ -98,7 +98,7 @@ Now the training begins:
 
 For the 4 training inputs repeatedly calculate: 
 
-* Network inputs = summer (inputs x weigts). NOTE: The matrix product (%*%) multiplies and sums. 
+* Network inputs = summer (inputs x weights). NOTE: The matrix product (%*%) multiplies and sums. 
 * Neuron output = transfer function (aka activation function) applied to network input
 * Error = actual output - training outputs
 * Feedback, adjustment 
@@ -126,7 +126,7 @@ system.time(trained_weights<-train())
 
 
 ##### Weights After Training
-The real purpose of training is to produce this weighs thate are now useful for solving novel inputs 
+The real purpose of training is to produce this weighs that are now useful for solving novel inputs 
 ```{r final_weights}
 print(trained_weights)
 
