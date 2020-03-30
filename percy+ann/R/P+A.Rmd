@@ -32,7 +32,7 @@ Taking a look at two perceptrons, a most simple one, and one with a hidden layer
 | neuron output     | output of the transfer function                                                | 
 +-------------------+--------------------------------------------------------------------------------+
 
-*[details](https://g.co/kgs/6hjevG)
+*[details](https://hagan.okstate.edu/nnd.html)
 
 ### Percy the Single-Layer Perceptron
 The perceptron is presented with sample input and corresponding  output datum.  The duty of the perceptron is to produce analogous output given other similar input.
