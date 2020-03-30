@@ -11,3 +11,5 @@ percy
 percy+ann/fricas/fricas.log
 percy+ann/fricas/percy.input
 .Rproj.user
+R.md
+*.bak
