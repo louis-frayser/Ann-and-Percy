@@ -1,7 +1,8 @@
-*.hs  linguist-detectable=true
-*.py  linguist-detectable=true
-*.rkt linguist-detectable=true
-*.m   linguist-detectable=true
-*.jl  linguist-detectable=true
-*.js  linguist-detectable=true
-*.r   linguist-detectable=true
+*.hs    linguist-detectable=true
+*.py    linguist-detectable=true
+*.rkt   linguist-detectable=true
+*.m     linguist-detectable=true
+*.jl    linguist-detectable=true
+*.js    linguist-detectable=true
+*.r     linguist-detectable=true
+*.html  linguist-detectable=false
