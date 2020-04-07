@@ -1,15 +1,15 @@
 
-#	Create a Simple Neural Network in Python from Scratch
+#	A Small Backpropagation Neural Network
 
-I watched a video (by Jonas Bostoen) and decided to follow along, but in Racket instead of Python. I resolved to keep playing with this perceptron algorithm until I understood what it did.
+I watched a video (by Jonas Bostoen) and decided to follow along, but in Racket instead of Python. I resolved to keep playing with this perceptron algorithm until I understood what it did. Here I present benchmarks for various implementations of the ANN. [See the RStudio article for more indepth analysis.](https://htmlpreview.github.io/?https://github.com/louis-frayser/Ann-and-Percy/blob/master/percy+ann/R/P+A.nb.html)
 
 ## Tooling
-After a little exposure to numPy, R, and  octave I'm beginning to understand the usage of special languages and packages for this type of research.  Well, next it's on to Common Lisp,another maybe R. I considered CERN's ROOT which I've played with in the past, but decided not to use it unless I need to deal with an extremely large dataset, mostly because users report that was its only claim to fame.
+After a little exposure to numPy, R, and  octave I'm beginning to understand the usage of special languages and packages for this type of research.  Well, next it's on to Common Lisp,another Scheme, and maybe R. I considered CERN's ROOT which I've played with in the past, but decided not to use it unless I need to deal with an extremely large dataset, mostly because users reported that scalability was ROOT's only claim to fame.
 
-I also want to learn to use those web-based "science notebooks." Sage Math sounds promising.
+I am also learning to use those web-based "science notebooks." I've done some study with RStudio. Sage Math also looks interesting. 
 
 ### Racket
-Translating the 1 layer perceptron code to Racket (Scheme) was challenging but much easier than was  translating to Haskell.  The biggest benefit of Racket was probably the IDE and the ability to use very symbolic function names (matix+ for example). Racket turned out to be pretty slow, however the docs said that Racket's typed version should be 25 to 50 times faster.
+Translating the 1-layer perceptron code to Racket (Scheme) was challenging but much easier than was translating it to Haskell.  The biggest benefit of Racket was probably the IDE and the ability to use very symbolic function names (matix+ for example). Racket turned out to be pretty slow, however the docs said that Racket's typed version should be 25 to 50 times faster.
 
 #### Typed Racked 
 Sat 21 Mar 2020 08:12:16 AM PDT
