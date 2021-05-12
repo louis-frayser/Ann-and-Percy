@@ -4,7 +4,7 @@
   "description": "An experiment with matrix math in JavaScript",
   "main": "percy.js",
   "dependencies": {
-    "mathjs": "^6.6.1"
+    "mathjs": "^7.5.1"
   },
   "devDependencies": {},
   "scripts": {
