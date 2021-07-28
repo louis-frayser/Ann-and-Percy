@@ -9,7 +9,7 @@ training_outputs=transpose [[0, 1, 1, 0]]::[[Float]]
 sigmoid x =  1 / (1 + exp (-x))
 sigderiv sx = sx * (1 - sx)
 
--- | Calculate a new output and weights ("think" function)
+-- | Calculate a new output and weights (this is the "think" function)
 out_wout inp win = let out = mmap sigmoid (inp `mmult` win)
                        err = matsub training_outputs out
                        adj = err `hmul` (mmap sigderiv out)
