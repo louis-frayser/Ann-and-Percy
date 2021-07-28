@@ -2,7 +2,7 @@ import Matrix
 import System.Random
 
 {- | The output follows the high-bit of the input.  We want the perceptron
- --  percieve this. -}
+ --  to percieve this. -}
 training_inputs=[[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]] -- ::[[Float]]
 training_outputs=transpose [[0, 1, 1, 0]]::[[Float]]
 
