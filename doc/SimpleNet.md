@@ -40,7 +40,7 @@ I've learned a lot about Fricas and coded the perceptron in it. I'm appreciating
 
 ## Benchmarks 
 Fri 20 Mar
-I did quite a bit of cleanup and tried to ensure the various single-layer perceptron implementations were doing the same work. Most noticeable was the Julia's performance was 20% time spent in I/O.  Writing results really slows it down.  I adjust each package so the the had similar output. Below are updated run-times.
+I did quite a bit of cleanup and tried to ensure the various single-layer perceptron implementations were doing the same work. Most noticeable was the Julia's performance was 20% time spent in I/O.  Writing results really slows it down.  I adjust each package so that they had similar output. Below are updated run-times.
 
 ### Sun 22 Mar 2020
 Benchmarks updated for Chicken scheme.
