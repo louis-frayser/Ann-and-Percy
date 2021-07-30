@@ -1,7 +1,7 @@
 
 #	A Small Backpropagation Neural Network
 
-I watched a video (by Jonas Bostoen) and decided to follow along, but in Racket instead of Python. I resolved to keep playing with this perceptron algorithm until I understood what it did. Here I present benchmarks for various implementations of the ANN. [See the RStudio article for more indepth analysis.](https://htmlpreview.github.io/?https://github.com/louis-frayser/Ann-and-Percy/blob/master/percy+ann/R/P+A.nb.html)
+I watched a video (by Jonas Bostoen) and decided to follow along, but in Racket instead of Python. I resolved to keep playing with this perceptron algorithm until I understood what it did. Here I present benchmarks for various implementations of the ANN. [See this RStudio article for more indepth analysis.](https://htmlpreview.github.io/?https://github.com/louis-frayser/Ann-and-Percy/blob/master/percy+ann/R/P+A.nb.html)
 
 ## Tooling
 After a little exposure to numPy, R, and  octave I'm beginning to understand the usage of special languages and packages for this type of research.  Well, next it's on to Common Lisp,another Scheme, and maybe R. I considered CERN's ROOT which I've played with in the past, but decided not to use it unless I need to deal with an extremely large dataset, mostly because users reported that scalability was ROOT's only claim to fame.
