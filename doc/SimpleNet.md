@@ -11,7 +11,7 @@ I am also learning to use those web-based "science notebooks." I've done some st
 ### Racket
 Translating the 1-layer perceptron code to Racket (Scheme) was challenging but much easier than was translating it to Haskell.  The biggest benefit of Racket was probably the IDE and the ability to use very symbolic function names (matix+ for example). Racket turned out to be pretty slow, however the docs said that Racket's typed version should be 25 to 50 times faster.
 
-#### Typed Racked
+#### Typed Racket
 Sat 21 Mar 2020 08:12:16 AM PDT
 Annotating racket for types was quit difficult. It was a lot like fighting the Haskell type system, maybe a little more frustrating.  I resorted to extracting parts of the code into simpler chunks that I was able to type. Typing produce about a five-fold increase in performance.
 
