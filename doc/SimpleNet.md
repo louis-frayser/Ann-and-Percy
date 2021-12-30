@@ -27,7 +27,7 @@ Julia was a disappointment, not as simple as Octave when it came to using matrix
 
 ### JavaScript
 Fri 20 Mar 2020 01:01:08 PM PDT
-Node.js was interestingly fast(percy.js). It produced results at 1/3 the speed of Python,or GHC, but was nearly twice as fast a Julia. I actually had to hand-code part of the math, even though I used the mathjs package, because it didn't seem to have any off the shelf Hadamard product-like functions. I used the array rather than the Node.js matrix types.
+Node.js was interestingly fast(percy.js). It produced results at 1/3 the speed of Python,or GHC, but was nearly twice as fast a Julia. I actually had to hand-code part of the math, even though I used the mathjs package, because it didn't seem to have any off-the-shelf Hadamard product-like functions. I used the array rather than the Node.js matrix types.
 
 ### Chicken Scheme
 Sun 22 Mar 2020
